@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load bootstrap_toolkit %}
+{% block content %}
+<div class="row">
+    <div class="col-md-2">
+        
+    </div>
+{% for userprofile in userprofiles %}
+<div class="col-xs-6 col-md-3 profile_back">
+{% if userprofile.pic %}
+<p><img src="{{userprofile.pic.url}}" width="320" height="320" class="img-circle"/></p>
+{% endif %}
+<p class="follow_button"><a href="{% url 'userprofile.views.follow' userprofile.user.id %}" class="btn btn-default">Follow | {{userprofile.followers.count}} </a></p>
+<p><a href="{% url 'userprofile.views.show_followers' userprofile.user.id %}">Followers</a></p>
+</div>
+<div class="col-md-1"></div>
+<div class="col-xs-12 col-sm-6 col-md-5">
+<h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span></h2>
+<h4 id="name" > {{userprofile.name}},{{userprofile.age}} years old</h4>
+<h2><span class="glyphicon glyphicon-education" aria-hidden="true"></span></h2>
+<h4>{{userprofile.college}}</h4>
+
+<h2><span class="glyphicon glyphicon-tag" aria-hidden="true"></span></h2>
+{% for tags in userprofile.follow_tags.all %}
+<button type="button" class="btn btn-default">{{tags}}</button>
+{% endfor %}
+
+<h3 class="italic">Bio...</h3>
+<p id="bio">{{userprofile.bio}}</p id="bio">
+
+<h2><span class="glyphicon glyphicon-phone" aria-hidden="true"></span></h2>
+<h4>{{userprofile.mobile}}</h4>
+<h2><span class="glyphicon glyphicon-home" aria-hidden="true"></span></h2>
+<h4>{{userprofile.address}}</h4>
+
+<button type="button" class="btn btn-info">
+<a href="{% url 'userprofile.views.user_profile' %}">Edit Details</a></button>
+</div>
+
+</div>
+{% endfor %}
+{% endblock %}
+{% block tags %}
+{% endblock %}

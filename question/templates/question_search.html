@@ -1,0 +1,15 @@
+
+{% if questions.count > 0 %}
+
+{% for question in questions %}
+    <li><a href="/question/get/{{question.id}}">{{ question.title}</a></li>
+{% endfor %}
+
+{% else %}
+
+<li>None to show!</li>
+
+{% endif %}
+
+
+

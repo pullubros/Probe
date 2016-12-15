@@ -1,0 +1,61 @@
+{% load bootstrap_toolkit %}
+{% load static %}
+<html>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<style type="text/css">
+
+    body{
+        background-color:gainsboro;
+    }
+    div.container.col-md-4.col-xs-6{
+        padding-top: 10%;
+        padding-right:5%;
+    }
+    a{
+        color:black;
+    }
+    h2.form-sigin-heading{
+        color:green;
+font-weight: 100px;
+   }
+   footer{
+    padding-left:40%;
+    padding-top:20%;
+   }
+</style>
+<body >
+ {% if form.errors %}
+    <p class="error">Sorry, that's not a valid username or password</p>
+  {% endif %}
+  <div class="row">
+    <div class="col-sm-6 col-md-8"></div>
+   <div class="container col-md-4 col-xs-6">
+
+      <form class="form-signin" action="/account/auth/" method="post">{% csrf_token %}
+       {{form}}
+        <h2 class="form-signin-heading">Please Sign in</h2>
+       <ul>
+       {{form}}
+    </ul>
+   <p>
+    <label for="username" class="sr-only">User name:</label>
+    <input type="text" name="username" value="" id="username" placeholder="username" class="form-control" required autofocus>
+    <label for="password" class="sr-only">Password:</label>
+    <input type="password" name="password" value="" id="password" placeholder="password" class="form-control" required>
+   </p>
+    <input type="submit" class="btn btn-lg btn-primary btn-block" value="LOGIN" />
+      </form>
+     <button type="button" class="btn btn-lg btn-success btn-block">
+        <a href='/account/register'>NEW USER REGISTRATION</a>
+     </button>
+    </div> <!-- /container -->
+  </div>
+  <footer>
+   
+  </footer>
+</body>
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</html>
+

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+	<div class="col-md-1 col-xs-1 ">
+		
+	</div>
+        <div class="col-md-3 col-xs-12 ">
+	
+            <div class="card hovercard ">
+                <div class="cardheader">
+
+                </div>
+                <div class="avatar">
+                    <img alt="" src="{{userprofile.pic.url}}">
+                </div>
+                <div class="info">
+                    <div class="title1">
+                        <a   href="{% url 'userprofile.views.show_profile' %}">{{userprofile.name}}</a>
+                    </div>
+                    <div class="desc">{{userprofile.age}},years old</div>
+                    <div class="desc">{{userprofile.college}}</div>
+                    <div class="desc">{{userprofile.bio}}</div>
+              </div>
+			</div>
+			</div>
+	
+	
+<div class="col-md-5 col-xs-12 ">
+            
+ {% for question in questions %}
+ <div class="divider">
+	
+ </div>
+ <div class="background">
+	<div class="user_details" ><img src="{{question.by.userprofile.pic.url}}" width="40" height="40" class="img-circle"/> <a href="/account/profile/get/{{question.by_id}}" data-toggle="popover" title=' <img src="{{question.by.userprofile.pic.url}}" width="40" height="40" class="img-circle"/>  {{question.by}}'
+data-content="<div>
+<h4>college:{{question.by.userprofile.college}}</h4>
+</div>
+" data-html="true" data-placement="bottom"> {{question.by}}</a></div>
+<h2 id=title><a href="{% url 'question.views.add_answer' question.id %} " class='question'>{{ question.title }}</a></h2>
+<a href="/question/like/{{question.id}}" data-toggle="popover" data-placement="left" title="people who liked this"
+   data-content='<div>
+   {% if question.likes.count > 0 %}
+   {% for likes in question.likes.all %}
+  
+   <p> <img src="{{likes.userprofile.pic.url}}" width="30" height="30" class="img-circle"/>  {{likes}}</p>
+
+
+   {% endfor %}
+   {% else %}
+   <h4>Be the first to like this question</h4>
+   {% endif %}
+   </div>
+' data-html="true">Like <span  class="badge" aria-hidden="true">  {{question.likes.count}}</span></a></p>
+<h4><p><a href="{% url 'question.views.add_answer' question.id %}" class="btn btn-default">Add Answers &raquo;</a></p></h4>
+ </div>
+<div class="divider"></div>
+ {% endfor %}
+</div>
+<div class="divider"></div>
+<div>
+<div class="col-md-3 col-xs-12">
+	<div class="affix ">
+	<ul>
+	{% for tags in userprofile.follow_tags.all %}
+	<li><p id="tag_text"><a href="#">{{tags}}</a></p></li>
+	{% endfor %}
+	</ul>
+	</div>
+</div>
+</div>
+
+  
+{% endblock %}

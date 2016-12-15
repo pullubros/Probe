@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load bootstrap_toolkit %}
+
+{% block sidebar %}
+
+{% endblock %}
+
+{% block content %}
+<div class="col-md-3"></div>
+<div class="col-md-6">
+<form  class="login" action="/question/add/" method="post" enctype="multipart/form-data" >{% csrf_token %}
+
+<ul>
+<h3 class="italic">Ask Anything...</h3>
+{{form|as_bootstrap}}
+</ul>
+<p class="button_center">
+<input type="submit" name="submit" class="btn btn-primary" >
+<button type="button" class="btn btn-info"><a href="/question/all"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></button>
+</p>
+</form>
+</div>
+<div class=col-md-3></div>
+{% endblock %}

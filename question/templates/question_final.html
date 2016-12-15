@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load bootstrap_toolkit %}
+{% include "show_profile.html" %}
+{% include "questions.html" %}
+<html>
+<body>
+{% block sidebar %}
+{% endblock %}
+{% block tags %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+
+            <div class="card hovercard">
+                <div class="cardheader">
+
+                </div>
+                <div class="avatar">
+                    <img alt="" src="{{userprofile.pic.url}}">
+                </div>
+                <div class="info">
+                    <div class="title1">
+                        <a   href="{% url 'userprofile.views.show_profile' %}">{{userprofile.name}}</a>
+                    </div>
+                    <div class="desc">{{userprofile.age}},years old</div>
+                    <div class="desc">{{userprofile.college}}</div>
+                    <div class="desc">{{userprofile.bio}}</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+    
+{% include "questions.html" %}
+
+        </div>
+	</div>
+</div>
+{% endblock %}
+{% block content %}
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block sidebar %}
+{% endblock %}
+{% block content %}
+  
+  <h2>Hi {{user}} you are now logged in!.Welcome to our site.</h2>
+   {% if notification.count > 0 %}
+				  {% for n in notification %}
+             <p><a href="/notification/show/{{n.id}}/">{{n.title}}</a></p>
+                 {% endfor %}
+				 {% endif %}
+  <h3>To continue please update your profile first</h3>
+  <p><a href="/acoount/profile" class="btn btn-success" > Update your profile</a></p>
+  
+
+{% endblock %}

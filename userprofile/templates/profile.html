@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load bootstrap_toolkit %}
+
+{% block content %}
+  
+  
+  {% for field in form %}
+    {{field.error}}
+
+  {% endfor %}
+  <div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6 white_profile">
+  <form class='login' action="/account/profile/" method="post" enctype='multipart/form-data'>{% csrf_token %}
+  <ul>
+  <h3 class="italic">Edit your profile information...</h3>
+  {{form|as_bootstrap}}
+  </ul>
+  <p class="button_center">
+  <input type="submit" class="btn btn-primary" value="Update" />
+  <button type="button" class="btn btn-info"><a href="/question/all"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></button>
+  </p>
+  </form>
+  </div>
+  <div class="col-md-3"></div>
+  </div>
+{% endblock %}

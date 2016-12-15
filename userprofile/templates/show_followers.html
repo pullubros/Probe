@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load bootstrap_toolkit %}
+<body class="show_followers">
+{% block content %}
+
+<div class="row">
+<div class="col-md-3">
+</div>
+<div class="col-md-2">
+{% if userprofile.pic %}
+<p><img src="{{userprofile.pic.url}}" width="150" height="150" class="img-circle"/></p>
+{% endif %}
+</div>
+<div class="col-md-6">
+<h1>{{userprofile.name}}</h1>
+</div>
+<div class="col-md-2">
+</div>
+</div>
+<div class="row">
+<div class="col-md-3">
+</div>
+<div class="col-md-4">
+<h5>Answers</h5>
+<h5>Questions</h5>
+<h5>Followers | {{userprofile.followers.count}}</h5>
+<h5>Following | </h5>
+</div>
+<p>{{userprofile.followers.count}} Followers</p>
+{% for c in userprofile.followers.all %}
+<img src="{{c.userprofile.pic.url}}" width="30" height="30" class="img-circle"/>
+<a href="/account/profile/get/{{c.id}}">{{c}}</a>
+<a href="/account/follow/{{c.id}}" class="btn btn-default">Follow</a>
+{% endfor %}
+</div>
+{% endblock %}
+</body>

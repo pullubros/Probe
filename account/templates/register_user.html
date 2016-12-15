@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load bootstrap_toolkit %}
+{% block sidebar %}
+{% endblock %}
+{% block content %}
+<div class="col-md-4">
+    
+</div>
+<div class="col-md-5">
+<h2>Registration</h2>
+  <form action="/account/register/" method="post" class="login"> {% csrf_token %}
+  {% for field in form %}
+    <div class="form-group">
+    {{ field }}
+    </div>
+    {% endfor %}
+    <p class="button_center">
+<input type="submit" class="btn btn-primary" value="Register" />
+<button type="button" class="btn btn-info"><a href="/"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></button>
+
+    </p>
+  </form>
+{% if form.errors %}
+    <p class="error">Sorry, try again</p>
+{% endif %}
+</div>
+<div class="col-md-3"></div>
+{% endblock %}
+
+

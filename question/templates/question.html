@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% for c in question.answer_set.all %}
+<div clas="divider"></div>
+<div class="col-md-4"></div>
+<div class="col-md-6 answer_all">
+<div class="user_details" ><h5><img src="{{c.by.userprofile.pic.url}}" width="40" height="40" class="img-circle"/> <a href="/account/profile/get/{{c.by_id}}" data-toggle="popover" title='<img src="{{c.by.userprofile.pic.url}}" width="40" height="40" class="img-circle"/> {{question.by}}' 
+data-content="<div>
+<h4>college:{{c.by.userprofile.college}}</h4>
+</div>
+" data-html="true" data-placement="bottom"> {{c.by}}</a></h5></div>
+<p id="answer_text">{{c.text|linebreaksbr}}</p>
+
+{% if c.thumbnail %}
+<p><img src="{{c.thumbnail.url}}" class="img-thumbnail"/></p>
+{% endif %}
+{% if c.by_id == userprofile.id %}
+<p><a href="/question/delete_answer/{{c.id}}" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></p>
+{% endif %}
+<p><a href="/question/upvote_answer/{{c.id}}" class="btn btn-default" data-toggle="popover" data-placement="left" title="people who upvoted this answer" data-content='
+<div>
+    {% if c.upvoted_by.count > 0 %}
+    {% for upvoted in c.upvoted_by.all %}
+    <p> <img src="{{upvoted.userprofile.pic.url}}" width="30" height="30" class="img-circle"/>  {{upvoted}} </p>
+    {% endfor %}
+    {% else %}
+    <h4>If you liked this,be the first to upvote</h4>
+    {% endif %}
+</div>
+' data-html="true">Upvote <span  class="badge" aria-hidden="true">  {{c.upvoted_by.count}}</span></a>
+<a href="/question/downvote_answer/{{c.id}}" class="btn btn-default" data-toggle="popover" data-placement="right" title="people who downvoted this answer" data-content='
+<div>
+    {% if c.downvoted_by.count > 0 %}
+    {% for downvoted in c.downvoted_by.all %}
+    <p><img src="{{downvoted.userprofile.pic.url}}" width="30" height="30" class="img-circle"/>  {{downvoted}} </p>
+    {% endfor %}
+    {% else %}
+    <h4>Looks good,no downvotes</h4>
+    {% endif %}
+</div>
+' data-html="true">Downvote <span  class="badge" aria-hidden="true">  {{c.downvoted_by.count}}</span></a>
+</p>
+<div class="divider"></div>
+</div
+{% endfor %}
+{% endblock %}

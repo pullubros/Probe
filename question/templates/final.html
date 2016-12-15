@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load bootstrap_toolkit %}
+<html>
+<body>
+{% block content %}
+<div class="col-md-4">
+    
+</div>
+<div class="col-md-6">
+<div class="background">
+<div class="user_details" ><img src="{{question.by.userprofile.pic.url}}" width="40" height="40" class="img-circle"/> <a href="/account/profile/get/{{question.by_id}}" data-toggle="popover" title="{{question.by}}" 
+data-content="<div>
+<h4>college:{{question.by.userprofile.college}}</h4>
+    <h4>bio:{{question.by.userprofile.bio}}</h4>
+</div>
+" data-html="true" data-placement="bottom"> {{question.by}}</a></div>
+<h2>{{ question.title }}</h2>
+<h4>{% for tags in question.tags.all %}
+<button type="button" class="btn btn-default">{{tags}}</button>
+{% endfor %}
+</h4>
+</div>
+<div class="divider"></div>
+
+{% include "add_answer.html" %}
+</div>
+{% include "question.html" %}
+{% endblock %}
+
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load bootstrap_toolkit %}
+
+{% block sidebar %}
+
+{% endblock %}
+
+{% block content %}
+
+<form class="login" action="/question/add_comment/{{answer.id}}/" method="post">{% csrf_token %}
+<h3>Write your comments here...</h3>
+<ul>
+{{form|as_bootstrap}}
+</ul>
+
+<input type="submit" name="submit" class="btn btn-primary" value="Post Comment">
+<button type="button" class="btn btn-info">
+    <a href="/question/get/{{question.id}}">Cancel</a></button>
+</form>
+
+{% endblock %}
+
